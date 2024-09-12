@@ -50,12 +50,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// asdsadsad
+		/// h1h1
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("asdsadsad")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel Asdsadsad => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "asdsadsad");
+		[ImplementPropertyType("h1H1")]
+		public virtual string H1H1 => this.Value<string>(_publishedValueFallback, "h1H1");
 
 		///<summary>
 		/// Page Title
