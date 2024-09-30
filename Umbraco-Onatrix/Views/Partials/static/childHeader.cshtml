@@ -1,0 +1,49 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedUrlProvider PublishedUrlProvider
+
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var modularPage = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "modularPage");
+    var aboutcontent = modularPage?.Children.FirstOrDefault(x => x.ContentType.Alias == "aboutUs") ?? null;
+    
+
+    var backgroundImage1 = aboutcontent?.Value<IPublishedContent>("selectedImage1")?.Url() ?? "test halloj";
+        
+
+    var selection = Model.Ancestors().ToArray(); 
+    var homePageDisplayName = "Home";
+    var isFirstItem = true;
+}
+
+
+<section class="child-header">
+    <div class="container">
+        <div class="position-titles">
+            <h2>@ViewBag.Title</h2>
+
+            @if (selection?.Length > 0){
+            <ul class="breadcrumb">
+                @foreach (var item in selection.OrderBy(x => x.Level)){
+
+                    var displayName = isFirstItem ? homePageDisplayName : item.Name;
+                    <li><a href="@item.Url(PublishedUrlProvider)">@displayName</a></li>
+                    <li>></li>
+                    isFirstItem = false;
+                }
+
+                <li class="active">@Model.Name</li>
+            </ul>
+            }
+        </div>
+    </div>
+        <img class="bg-image-1" src="@backgroundImage1">
+        <img class="bg-image-2" src="/src/images/bg-globe2.svg">
+</section>
+
+
+

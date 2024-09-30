@@ -1,0 +1,117 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+}
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("8ae15e32-5a24-4102-a7b1-a636659ea070"))
+    .ChildrenOfType("projectItemTemplate")
+    .Where(x => x.IsVisible());
+
+    var itemsPerPage = 3;
+
+	if (!int.TryParse(Context.Request.Query["page"], out int currentPage))
+		currentPage = 1;
+	
+		
+
+	var totalItems = selection?.Count() ?? 0;
+	var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+}
+
+<div class="wrapper3 container">
+
+    <section class="onatrix-projects">
+        <div class="content">
+
+            @if (pagedItems != null){
+			    @foreach (var item in pagedItems)
+                {
+                    var image = item?.Value<IPublishedContent>("thumbnailImage")?.Url() ?? "";
+                    var preamble = item?.Value<string>("preamble") ?? "";
+                    var publishDate = item?.Value<string>("publishDate") ?? "";
+                    
+
+                <a href="@item.Url()" class="project">
+                    <img src="@image">
+                    <div class="project-content">
+                        <h3>@item.Name</h3>
+                        <div class="publish-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            <p class="date" >@publishDate</p>
+                        </div>
+                        <p class="paragraph-content">@preamble</p>
+                        <div class="read-more">
+                            <p class="rm">Read more</p>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+                }
+            }	
+
+            <div class="pag-area">
+                <section class="pagination">
+                    <div class="container">
+                        @if (currentPage > 1)
+                        {
+                            <a href="?page=@(currentPage - 1)" class="change">PREV</a>
+                        }
+                        else
+                        {
+                            <span class="change inactive">PREV</span>
+                        }
+
+                        <div class="pages">
+                        @for (int i = 1; i <= Math.Ceiling((decimal)totalItems / itemsPerPage); i++)
+                        {
+                            
+                            <div class="@(i == currentPage ? "number active" : "number")">
+                            <a href="?page=@i">@i</a>
+                            </div>
+                        }
+                        </div>
+
+                        @if (currentPage < Math.Ceiling((decimal)totalItems / itemsPerPage))
+                        {
+                            <a class="change" href="?page=@(currentPage + 1)">NEXT</a>
+                        }
+                        else
+                        {
+                            <span class="change inactive">NEXT</span>
+                        }
+                    </div>
+		    </section>
+        </div>
+            
+        </div>
+    </section>
+
+    <section class="side-bar-right">
+        <div class="content">
+            <h5>Tags</h5>
+            <div class="tags-area">
+                <div id="re" class="tag">Report</div>
+                <div id="bp" class="tag">Business plans</div>
+                <div id="in" class="tag">Insights</div>
+                <div id="bu" class="tag">Business</div>
+                <div id="ap" class="tag">App</div>
+                <div id="pr" class="tag">Project</div>
+                <div id="fi" class="tag">Finance</div>
+                <div id="pri" class="tag">Pricing</div>
+            </div>
+            <div class="help-box">
+                <div class="box-content">
+                    <h5 class="box-h5">How can we help you?</h5>
+                    <p class="box-p">online support 24/7, we are here to help you</p>
+                    <input placeholder="E-mail address">
+                </div>
+                <img src="/media/sw5hn5hy/Mail.svg">
+            </div>
+        </div>
+    </section>
+</div>
+
+@await Html.PartialAsync("partials/static/contactSection1.cshtml")

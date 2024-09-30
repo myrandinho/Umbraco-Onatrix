@@ -1,0 +1,61 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var siteLogotype = settings?.Value<IPublishedContent>("siteLogotype")?.Url() ?? "";
+    var siteName = settings?.Value<string>("siteName") ?? "";
+
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
+}
+
+        <header>
+            <div class="header-section">
+                <div class="header-bg1">
+                    <div class="header1content container">
+                        <div class="header-adress">
+                            <p>@officeLocation</p>
+                        </div>
+                    @await Html.PartialAsync("socialMedia.cshtml")
+                    </div>
+                </div>
+                <div class="logo-and-navigation">
+                    <div class="header-content container">
+                        <a href="/" class="header-logo">
+                            <img src="@siteLogotype" alt="@siteName">
+                        </a>
+                        <nav class="nav-menu">
+                            @if (selection?.Length > 0)
+                            {
+                            
+                                @foreach (var item in selection)
+                                {
+                                    <a class="@(item.IsAncestorOrSelf(Model) ? "nav-link active" : "nav-link")" href="@item.Url(PublishedUrlProvider)" title="@item.Name">@item.Name</a>
+                                }
+                            
+                            }
+                        </nav>
+                        <div class="search">
+                            <a href="#">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                            
+                        </div>
+                        <div class="mobile-menu">
+                            <a href="#">
+                                <i class="fa-solid fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>

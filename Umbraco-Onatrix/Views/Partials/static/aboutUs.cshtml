@@ -1,0 +1,48 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper;
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ModularPage>;
+
+@{
+
+
+
+    var selectedPageTitle = Model?.Value<string>("selectedPageTitle") ?? "";
+    var chosenHeadlineContent = Model?.Value<string>("chosenHeadlineContent") ?? "";
+    var qoutationText = Model?.Value<string>("qoutationText") ?? "";
+    var contentParagraph = Model?.Value<string>("contentParagraph") ?? "";
+    var signatureContent = Model?.Value<string>("signatureContent") ?? "";
+
+    var selectedSignatureImage = Model?.Value<IPublishedContent>("selectedSignatureImage")?.Url() ?? "";
+    
+
+    
+}
+
+<section class="about-us">
+    <div class="container">
+        <div class="about-us-content">
+            <div class="about-us-info">
+                <h6>@selectedPageTitle</h6>
+                <h2>@chosenHeadlineContent</h2>
+                <p class="about-qoute">@qoutationText</p>
+                <p class="about-us-text">@contentParagraph</p>
+                <img src="@selectedSignatureImage">
+                <p class="signature-and-title">@signatureContent</p>
+            </div>
+        </div>
+        <div class="form-side">
+            <div class="myform">
+                <div class="form-header">
+                    <h2>Request a call back</h2>
+                </div>
+                <form onsubmit="handleContactFormSubmit(event)" class="form-body">
+                    <p class="form-instructions">Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat</p>
+                    @Html.GetBlockListHtml(Model.CallbackForm)
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

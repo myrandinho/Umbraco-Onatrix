@@ -1,0 +1,65 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Contact>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+
+
+	bool.TryParse(ViewData["error_name"]?.ToString(), out bool error_name);
+	bool.TryParse(ViewData["error_email"]?.ToString(), out bool error_email);
+	bool.TryParse(ViewData["error_phone"]?.ToString(), out bool error_phone);
+
+
+}
+
+@await Html.PartialAsync("partials/static/contactSection1.cshtml")
+
+<section class="callback">
+	<div class="container shadow p-3 mb-5 bg-white rounded">
+		<div class="content">
+			<div class="text-content">
+				<h6>Request a call back</h6>
+				<h2>Let us know about your next project</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur, ligula semper sagittis lobortis, eros metus efficitur purus</p>
+			</div>
+			<div class="form-container">
+				@if (TempData["success"] != null)
+				{
+					<div class="success-message">@TempData["success"]</div>
+				}
+				else
+				{
+					@using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+					{
+						<div class="form-input-group">
+
+							<input id="name" name="name" type="text" placeholder="Name" class="form-input" value="@ViewData["name"]">
+							<span class="form-input-error @((error_name) ? "form-invalid-input" : null )">You must enter your name</span>
+						</div>
+
+						<div class="form-input-group">
+
+							<input id="email" name="email" type="email" placeholder="Email" class="form-input" value="@ViewData["email"]">
+							<span class="form-input-error @((error_email) ? "form-invalid-input" : null )">You must enter a valid e-mail address</span>
+						</div>
+
+						<div class="form-input-group">
+
+							<input id="phone" name="phone" type="tel" placeholder="Phone" class="form-input" value="@ViewData["phone"]">
+							<span class="form-input-error @((error_phone) ? "form-invalid-input" : null )">You must enter a valid phone number</span>
+						</div>
+
+						<button type="submit" class="form-button btn-submit">SEND</button>
+						@* @Html.GetBlockListHtml(Model.ContactForm) *@
+					}
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+@await Html.PartialAsync("partials/static/partnersSection.cshtml")
+
+
+

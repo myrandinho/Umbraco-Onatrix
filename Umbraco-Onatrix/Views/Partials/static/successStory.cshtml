@@ -1,0 +1,49 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper;
+
+@{
+
+    var sectionSelectedTitle = Model?.Value<string>("sectionSelectedTitle") ?? "";
+    var sectionMiniTitle = Model?.Value<string>("sectionMiniTitle") ?? "";
+    var data1Count = Model?.Value<string>("data1Count") ?? "";
+    var data1Content = Model?.Value<string>("data1Content") ?? "";
+    var data2Count = Model?.Value<string>("data2Count") ?? "";
+    var data2Content = Model?.Value<string>("data2Content") ?? "";
+    var data3Count = Model?.Value<string>("data3Count") ?? "";
+    var data3Content = Model?.Value<string>("data3Content") ?? "";
+    
+    
+
+    var sectionSelectedImage = Model?.Value<IPublishedContent>("sectionSelectedImage")?.Url() ?? "";
+}
+
+
+<section class="success-story">
+    <div class="container">
+        <div class="content">
+            <h6>@sectionMiniTitle</h6>
+            <h2>@sectionSelectedTitle</h2>
+            <div class="success-data">
+                <div class="data">
+                    <h1>@data1Count</h1>
+                    <p>@data1Content</p>
+                </div>
+                <div class="data">
+                    <h1>@data2Count</h1>
+                    <p>@data2Content</p>
+                </div>
+                <div class="data">
+                    <h1>@data3Count</h1>
+                    <p>@data3Content</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="img-position">
+            <img src="@sectionSelectedImage">
+        </div>
+        
+    </div>
+</section>

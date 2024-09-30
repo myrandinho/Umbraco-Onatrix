@@ -16,12 +16,12 @@
     var sectionBackgroundImage = Model?.Content.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
 }
 
-<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @centerContentClass"">
-
-    @if (!string.IsNullOrEmpty(backgroundColorClass))
+<section id="@sectionId" class="@spacingTopClass @spacingBottomClass @centerContentClass     @if (!string.IsNullOrEmpty(backgroundColorClass))
     {
-        <div class="background @backgroundColorClass"></div>
-    }
+        @backgroundColorClass
+    } "">
+
+
 
     @if(!string.IsNullOrEmpty(sectionBackgroundImage))
     {

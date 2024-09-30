@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+}
+<div class="wrapper2 container">
+	@await Html.PartialAsync("partials/static/sidebar.cshtml")
+	<section class="service-details">
+	<div class="container">
+		@Model.Value("pageContent")
+	</div>
+</section>
+</div>

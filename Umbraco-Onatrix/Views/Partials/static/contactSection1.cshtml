@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var modularPage = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "modularPage");
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage");
+    var contactcontent = modularPage?.Children.FirstOrDefault(x => x.ContentType.Alias == "contact") ?? null;
+    
+
+    var backgroundImage = contactcontent?.Value<IPublishedContent>("selectedBackgroundImage")?.Url() ?? "";
+    var selectedImage = contactcontent?.Value<IPublishedContent>("selectedImage")?.Url() ?? "";
+    var heading = contactcontent?.Value<string>("headingContent") ?? "";
+
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var officeEmail = settings?.Value<string>("officeEmailAddress") ?? "";
+    var officePhone = settings?.Value<string>("officePhoneNumber") ?? "";
+
+}
+
+<section class="contact-info-section">
+                <div class="container">
+                    <div class="photo-with-bg">
+                        <img class="bg-image" src="@backgroundImage">
+                        <img class="guy-image" src="@selectedImage">
+                    </div>
+                    <div class="info-side">
+                        <h2>@heading</h2>
+                        
+                        <div class="contact-box">
+                            <div class="upper">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <h6 style="padding-top: 0;" >Office location</h6>
+                            </div>
+                            <div class="down-area">
+                                <p>@officeLocation</p>
+                            </div>
+                        </div>
+                        <div class="contact-box">
+                            <div class="upper">
+                                <i class="fa-solid fa-phone"></i>
+                                <h6 style="padding-top: 0;">Phone number</h6>
+                            </div>
+                            <div class="down-area">
+                                <p>@officePhone</p>
+                            </div>
+                        </div>
+                        <div class="contact-box">
+                            <div class="upper">
+                                <i class="fa-regular fa-envelope"></i>
+                                <h6 style="padding-top: 0;">E-mail address</h6>
+                            </div>
+                            <div class="down-area">
+                                <p>@officeEmail</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>

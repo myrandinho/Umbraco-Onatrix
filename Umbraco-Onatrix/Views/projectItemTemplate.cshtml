@@ -1,0 +1,20 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "mainLayout.cshtml";
+	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+}
+
+<div class="wrapper3 container">
+	<section class="project-details">
+	<div class="container">
+		<div class="publish-date-main">
+			<i class="fa-regular fa-calendar"></i>
+			<p class="date" >@Model.Value("publishDate")</p>
+		</div>
+		@Model.Value("pageContent")
+	</div>
+    </section>
+    @await Html.PartialAsync("partials/static/sidebar2.cshtml")
+</div>
+

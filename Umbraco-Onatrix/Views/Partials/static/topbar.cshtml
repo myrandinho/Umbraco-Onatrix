@@ -1,0 +1,48 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContents = UmbracoHelper.ContentAtRoot();
+    var settings = rootContents?.FirstOrDefault(x => x.ContentType.Alias == "settingsPage") ?? null;
+    var officeLocation = settings?.Value<string>("officeLocation") ?? "";
+    var siteLogotype = settings?.Value<IPublishedContent>("siteLogotype")?.Url() ?? "";
+    var siteName = settings?.Value<string>("siteName") ?? "";
+}
+
+        <header>
+            <div class="header-section">
+                <div class="header-bg1">
+                    <div class="header1content container">
+                        <div class="header-adress">
+                            <p>@officeLocation</p>
+                        </div>
+                    @await Html.PartialAsync("socialMedia.cshtml")
+                    </div>
+                </div>
+                <div class="logo-and-navigation">
+                    <div class="header-content container">
+                        <div class="header-logo">
+                            <img src="@siteLogotype" alt="@siteName">
+                        </div>
+                        <nav class="nav-menu">
+                            <a href="#">About</a>
+                            <a href="#">Services</a>
+                            <a href="#">Projects</a>
+                            <a href="#">Contact</a>
+                        </nav>
+                        <div class="search">
+                            <a href="#">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                            
+                        </div>
+                        <div class="mobile-menu">
+                            <a href="#">
+                                <i class="fa-solid fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>

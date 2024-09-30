@@ -1,0 +1,32 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper;
+
+@{
+
+
+
+    var headlineContent = Model?.Value<string>("headlineContent") ?? "";
+    var headline2Content = Model?.Value<string>("headline2Content") ?? "";
+    var paragraphContent = Model?.Value<string>("paragraphContent") ?? "";
+    var buttonContent = Model?.Value<string>("buttonContent") ?? "";
+    var buttonUrl = Model?.Value<string>("buttonUrl") ?? "";
+
+    var selectedImage = Model?.Value<IPublishedContent>("selectedImage")?.Url() ?? "";
+    var selectedBackgroundImage = Model?.Value<IPublishedContent>("selectedBackgroundImage")?.Url() ?? "";
+
+    
+}
+
+<section class="onatrix-squad">
+    <div class="container">
+        <div class="content">
+            <h2>@headlineContent</h2>
+            <h2 class="yellow-h2">@headline2Content</h2>
+            <p>@paragraphContent</p>
+            <a href="@buttonUrl" class="my-btn">@buttonContent</a>
+            <img src="@selectedImage">
+        </div>
+        <img class="world-background" src="@selectedBackgroundImage">
+    </div>
+</section>
