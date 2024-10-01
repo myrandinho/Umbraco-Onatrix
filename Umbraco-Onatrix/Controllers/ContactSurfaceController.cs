@@ -8,19 +8,24 @@ using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Website.ActionResults;
 using Umbraco.Cms.Web.Website.Controllers;
 using Umbraco_Onatrix.Models;
+using Umbraco_Onatrix.Services;
 
 namespace Umbraco_Onatrix.Controllers;
 
 	public class ContactSurfaceController : SurfaceController
 	{
-		public ContactSurfaceController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
+
+	private readonly ContactService _contactService;
+		
+		public ContactSurfaceController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, ContactService contactService) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
 		{
+			_contactService = contactService;
 		}
 
 
 
     
-		public IActionResult HandleSubmit(ContactFormModel form)
+		public async Task<IActionResult> HandleSubmit(ContactFormModel form)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -37,8 +42,9 @@ namespace Umbraco_Onatrix.Controllers;
 
 		}
 
+		await _contactService.CreateContactFormEntity(form);
 		TempData["success"] = "form submitted sucessfully.";
-			return RedirectToCurrentUmbracoPage();
+		return RedirectToCurrentUmbracoPage();
 
 		}
 	}

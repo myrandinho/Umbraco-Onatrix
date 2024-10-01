@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Umbraco.Cms.Core.Services;
+using Umbraco_Onatrix.Contexts;
+using Umbraco_Onatrix.Services;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 builder.CreateUmbracoBuilder()
 	.AddBackOffice()
@@ -6,6 +13,18 @@ builder.CreateUmbracoBuilder()
 	.AddDeliveryApi()
 	.AddComposers()
 	.Build();
+
+
+string connectionString = builder.Configuration.GetConnectionString("umbracoDbDSN");
+
+
+builder.Services.AddScoped<ContactService>();
+
+
+builder.Services.AddUmbracoDbContext<DataContext>(options =>
+{
+	options.UseSqlServer(connectionString);
+});
 
 WebApplication app = builder.Build();
 
