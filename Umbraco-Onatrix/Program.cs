@@ -19,6 +19,7 @@ string connectionString = builder.Configuration.GetConnectionString("umbracoDbDS
 
 
 builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped<EmailSenderService>();
 
 
 builder.Services.AddUmbracoDbContext<DataContext>(options =>

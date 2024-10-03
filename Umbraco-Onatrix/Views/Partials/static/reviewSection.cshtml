@@ -1,0 +1,36 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper;
+
+@{
+    var miniTitle = Model?.Value<string>("miniTitle") ?? "";
+    var headline = Model?.Value<string>("headline") ?? "";
+    var paragraph = Model?.Value<string>("paragraph") ?? "";
+    var workerName = Model?.Value<string>("workerName") ?? "";
+    var company = Model?.Value<string>("company") ?? "";
+
+    var selectedSectionBackgroundImg = Model?.Value<IPublishedContent>("selectedSectionBackgroundImg")?.Url() ?? "";
+    
+}
+
+
+
+<section class="review-section">
+    <div class="content-left">
+        <div class="container">
+            <div class="titles">
+                <h6>@miniTitle</h6>
+                <h2>@headline</h2>
+            </div>
+            <p class="service-review">@paragraph</p>
+            <div class="stars">
+                <i class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i><i class="fa-sharp fa-solid fa-star"></i>
+            </div>
+            <p class="review-name">@workerName</p>
+            <p class="company">@company</p>
+        </div>
+    </div>
+    <div class="content-right">
+        <img src="@selectedSectionBackgroundImg">
+    </div>
+</section>

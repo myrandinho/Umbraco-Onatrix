@@ -50,12 +50,52 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Company
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("company")]
+		public virtual string Company => this.Value<string>(_publishedValueFallback, "company");
+
+		///<summary>
+		/// Headline
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("headline")]
+		public virtual string Headline => this.Value<string>(_publishedValueFallback, "headline");
+
+		///<summary>
+		/// Layout
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("layout")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel Layout => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockGridModel>(_publishedValueFallback, "layout");
+
+		///<summary>
+		/// Mini Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("miniTitle")]
+		public virtual string MiniTitle => this.Value<string>(_publishedValueFallback, "miniTitle");
+
+		///<summary>
 		/// Page Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("pageTitle")]
 		public virtual string PageTitle => this.Value<string>(_publishedValueFallback, "pageTitle");
+
+		///<summary>
+		/// Paragraph
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("paragraph")]
+		public virtual string Paragraph => this.Value<string>(_publishedValueFallback, "paragraph");
 
 		///<summary>
 		/// Selected Image 1
@@ -72,5 +112,21 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("selectedImage2")]
 		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SelectedImage2 => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "selectedImage2");
+
+		///<summary>
+		/// Selected Section Background IMG
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("selectedSectionBackgroundImg")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SelectedSectionBackgroundImg => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "selectedSectionBackgroundImg");
+
+		///<summary>
+		/// Worker Name
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.2.0+1b21caa")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("workerName")]
+		public virtual string WorkerName => this.Value<string>(_publishedValueFallback, "workerName");
 	}
 }

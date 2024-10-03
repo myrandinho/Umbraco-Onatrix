@@ -1,11 +1,24 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<AboutUs> // Använd direkt modellnamn utan alias
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
 @{
-	Layout = "mainLayout.cshtml";
-	ViewBag.Title = Model?.Value("pageTitle") ?? null;
+    Layout = "mainLayout.cshtml";
+    var pageTitle = Model.Value("pageTitle") as string;
+    ViewBag.Title = pageTitle;
+
+    var layoutGrid = Model?.Layout;
+    
 }
 
+@if (layoutGrid != null)
+{
+    @await Html.GetBlockGridHtmlAsync(layoutGrid)
+}
 
+@await Html.PartialAsync("partials/static/reviewSection.cshtml")
+
+@await Html.PartialAsync("partials/static/ourExperts.cshtml")
 
 
 @await Html.PartialAsync("partials/static/contactSection1.cshtml")

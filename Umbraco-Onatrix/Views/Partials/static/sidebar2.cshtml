@@ -1,4 +1,6 @@
-﻿
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 <section class="side-bar-right">
     <div class="content">
@@ -34,9 +36,16 @@
             <div class="box-content">
                 <h5 class="box-h5">How can we help you?</h5>
                 <p class="box-p">online support 24/7, we are here to help you</p>
-                <input placeholder="E-mail address">
-            </div>
+                
+                @using (Html.BeginUmbracoForm("HandleHelpSubmit", "ContactSurface", FormMethod.Post))
+                {
+
+                    <input id="email" name="email" type="email" placeholder="E-mail address" value="@ViewData["email"]">
+                    <button type="submit" class="envelope-btn"><i class="fa-regular fa-envelope"></i></button>
+                    
+                }
             <img src="/media/sw5hn5hy/Mail.svg">
+            </div>
         </div>
     </div>
 </section>

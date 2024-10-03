@@ -15,11 +15,28 @@ public class ContactService(DataContext context)
 		{
 			Name = model.Name,
 			Email = model.Email,
-			Phone = model.Phone
+			Phone = model.Phone,
+			DateTime = DateTime.Now
 		};
 
 		var result = await context.ContactForms.AddAsync(entity);
 		await context.SaveChangesAsync();
 		return entity;
 	}
+
+	public async Task<GetHelpEntity> CreateGetHelpEntity(string email)
+	{
+		var entity = new GetHelpEntity
+		{
+			Email = email,
+			DateTime = DateTime.Now
+
+		};
+
+		var result = await context.HelpForm.AddAsync(entity);
+		await context.SaveChangesAsync();
+		return entity;
+	}
+
+
 }

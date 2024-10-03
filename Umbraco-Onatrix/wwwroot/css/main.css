@@ -496,7 +496,29 @@ body {
   text-align: center;
   gap: 20px;
   background-color: #ffffff;
-  padding: 50px 0 10px 0;
+  /*                     .form-input-group {
+                          display: flex;
+                          position: relative;
+
+
+                          .form-input {
+                              height: 50px;
+                              width: 100%;
+                              border: 1px solid $border-color-grey;
+                              color: #797474;
+                              padding-left: 6px;
+                              text-indent: 12px; 
+                          }
+
+                          .form-input-error {
+                              position: absolute;
+                              bottom: -16px;
+                              left: 18px;
+                              color: red;
+                              font-size: 10px;
+
+                          }
+                      } */
 }
 @media (min-width: 1200px) {
   .about-us .container .form-side .myform .form-body {
@@ -512,31 +534,34 @@ body {
   font-size: 13px;
   padding-top: 1rem;
 }
-.about-us .container .form-side .myform .form-body .form-input-group {
-  display: flex;
+.about-us .container .form-side .myform .form-body form .form-input-group {
   position: relative;
-  margin-bottom: 20px;
 }
-.about-us .container .form-side .myform .form-body .form-input-group .form-input {
+.about-us .container .form-side .myform .form-body form .form-input-group .form-input {
   height: 50px;
   width: 100%;
   border: 1px solid #EBEBEB;
   color: #797474;
   padding-left: 6px;
   text-indent: 12px;
+  margin-bottom: 20px;
 }
-.about-us .container .form-side .myform .form-body .form-input-group .form-input-error {
+.about-us .container .form-side .myform .form-body form .form-input-group .form-input-error {
+  display: none;
   position: absolute;
-  bottom: -16px;
+  bottom: 3px;
   left: 18px;
   color: red;
   font-size: 10px;
 }
-.about-us .container .form-side .myform .form-body .form-input-group {
+.about-us .container .form-side .myform .form-body form .form-input-group .form-invalid-input {
+  display: block !important;
+}
+.about-us .container .form-side .myform .form-body form .form-button-group {
   display: flex;
   justify-content: center;
 }
-.about-us .container .form-side .myform .form-body .form-input-group .form-button {
+.about-us .container .form-side .myform .form-body form .form-button {
   display: inline-block;
   cursor: pointer;
   border-radius: 3px;
@@ -552,15 +577,16 @@ body {
   width: 100%;
   margin-bottom: 40px;
 }
-.about-us .container .form-side .myform .form-body .form-input-group .form-button:hover {
+.about-us .container .form-side .myform .form-body form .form-button:hover {
   transition: 0.25s;
   text-decoration: none;
 }
 
+
 .our-services {
   background-color: #F7F7F7;
   padding-bottom: 95px;
-  margin-top: 250px;
+  padding-top: 100px;
 }
 .our-services .container .titles {
   text-align: center;
@@ -1197,8 +1223,6 @@ footer .container p span {
   padding-right: 40px;
   border-right: 1px solid #EBEBEB;
   padding-top: 75px;
-  height: 100%;
-  
 }
 .side-bar .content h5 {
   font-style: normal;
@@ -1251,13 +1275,32 @@ footer .container p span {
   padding-bottom: 15px;
   font-weight: 300;
 }
-.side-bar .content .help-box .box-content input {
+.side-bar .content .help-box .box-content form {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.side-bar .content .help-box .box-content form input {
   height: 50px;
   border-radius: 3px;
   color: #797474;
   padding-left: 6px;
   text-indent: 12px;
   width: 100%;
+}
+.side-bar .content .help-box .box-content form .envelope-btn {
+  position: absolute;
+  display: inline;
+  right: 10px;
+  top: 13px;
+  border: none;
+  background-color: transparent;
+}
+.side-bar .content .help-box .box-content form .envelope-btn i {
+  font-size: 20px;
+}
+.side-bar .content .help-box .box-content form .envelope-btn i:hover {
+  color: greenyellow;
 }
 .side-bar .content .help-box img {
   position: absolute;
@@ -1413,13 +1456,35 @@ footer .container p span {
   padding-bottom: 15px;
   font-weight: 300;
 }
-.side-bar-right .content .help-box .box-content input {
+.side-bar-right .content .help-box .box-content form {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  
+}
+.side-bar-right .content .help-box .box-content form input {
   height: 50px;
   border-radius: 3px;
   color: #797474;
   padding-left: 6px;
   text-indent: 12px;
   width: 100%;
+  
+}
+.side-bar-right .content .help-box .box-content form .envelope-btn {
+  position: absolute;
+  display: inline;
+  right: 10px;
+  top: 13px;
+  border: none;
+  background-color: transparent;
+  z-index: 999;
+}
+.side-bar-right .content .help-box .box-content form .envelope-btn i {
+  font-size: 20px;
+}
+.side-bar-right .content .help-box .box-content form .envelope-btn i:hover {
+  color: greenyellow;
 }
 .side-bar-right .content .help-box img {
   position: absolute;
@@ -1705,7 +1770,7 @@ footer .container p span {
   justify-content: center;
   margin-bottom: 1.2rem;
 }
-.callback .container .content .form-container .form-input-group .form-button {
+.callback .container .content .form-container .form-button {
   display: inline-block;
   cursor: pointer;
   border-radius: 3px;
@@ -1733,4 +1798,140 @@ footer .container p span {
 
 .form-input-error.form-invalid-input {
     display: inline; /* Visar felmeddelandet när klassen 'form-invalid-input' läggs till */
+}
+
+#ceo {
+  padding: 100px 0;
+}
+
+.review-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 500px;
+  margin-bottom: 100px;
+}
+.review-section .content-left {
+  background-color: #F7F7F7;
+  height: 100%;
+}
+.review-section .content-left .container {
+  padding-left: 30%;
+}
+.review-section .content-left .container .titles {
+  padding-right: 10%;
+}
+.review-section .content-left .container .titles h6 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #D9C3A9;
+  padding-top: 80px;
+}
+.review-section .content-left .container .titles h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  color: #4F5955;
+  margin-bottom: 2rem;
+}
+.review-section .content-left .container .service-review {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  color: #4F5955;
+  font-style: italic;
+  color: #999999;
+  padding-right: 10%;
+}
+.review-section .content-left .container .stars {
+  margin-bottom: 2rem;
+}
+.review-section .content-left .container .stars i {
+  margin-right: 4px;
+  font-size: 14px;
+}
+.review-section .content-left .container .review-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  color: #2D303A;
+  font-size: 14px;
+}
+.review-section .content-left .container .company {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  color: #2D303A;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.review-section .content-right {
+  height: 100%;
+}
+
+.review-section .content-right img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.our-expert-section .container .titles {
+  text-align: center;
+  padding: 0 30%;
+}
+.our-expert-section .container .titles h6 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #D9C3A9;
+  padding-top: 80px;
+}
+.our-expert-section .container .titles h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  color: #4F5955;
+  margin-bottom: 2rem;
+}
+.our-expert-section .container .experts-spotlight {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+.our-expert-section .container .experts-smaller {
+  display: flex;
+  gap: 30px;
+  margin-top: 55px;
+  margin-bottom: 85px;
+}
+.our-expert-section .expert-card {
+  border: 1px solid #EBEBEB;
+}
+.our-expert-section .expert-card img {
+  height: auto;
+  width: 100%;
+}
+.our-expert-section .expert-card .card-footer .position {
+  padding: 1.2rem;
+}
+.our-expert-section .expert-card .card-footer .position h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  color: #4F5955;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+}
+.our-expert-section .expert-card .card-footer .position p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
 }

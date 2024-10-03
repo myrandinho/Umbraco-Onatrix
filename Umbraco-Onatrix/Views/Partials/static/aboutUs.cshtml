@@ -17,7 +17,9 @@
 
     var selectedSignatureImage = Model?.Value<IPublishedContent>("selectedSignatureImage")?.Url() ?? "";
     
-
+    bool.TryParse(ViewData["error_name"]?.ToString(), out bool error_name);
+	bool.TryParse(ViewData["error_email"]?.ToString(), out bool error_email);
+	bool.TryParse(ViewData["error_phone"]?.ToString(), out bool error_phone);
     
 }
 
@@ -38,10 +40,34 @@
                 <div class="form-header">
                     <h2>Request a call back</h2>
                 </div>
-                <form onsubmit="handleContactFormSubmit(event)" class="form-body">
+                <div class="form-body">
                     <p class="form-instructions">Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat</p>
-                    @Html.GetBlockListHtml(Model.CallbackForm)
-                </form>
+                    
+                    @using (Html.BeginUmbracoForm("HandleSubmit", "ContactSurface", FormMethod.Post))
+					{
+						<div class="form-input-group">
+
+							<input id="name" name="name" type="text" placeholder="Name" class="form-input" value="@ViewData["name"]">
+							<span class="form-input-error @((error_name) ? "form-invalid-input" : null )">You must enter your name</span>
+						</div>
+
+						<div class="form-input-group">
+
+							<input id="email" name="email" type="email" placeholder="Email" class="form-input" value="@ViewData["email"]">
+							<span class="form-input-error @((error_email) ? "form-invalid-input" : null )">You must enter a valid e-mail address</span>
+						</div>
+
+						<div class="form-input-group">
+
+							<input id="phone" name="phone" type="tel" placeholder="Phone" class="form-input" value="@ViewData["phone"]">
+							<span class="form-input-error @((error_phone) ? "form-invalid-input" : null )">You must enter a valid phone number</span>
+						</div>
+
+						<button type="submit" class="form-button btn-submit">Submit</button>
+						
+					}
+                </div>
+                    
             </div>
         </div>
     </div>

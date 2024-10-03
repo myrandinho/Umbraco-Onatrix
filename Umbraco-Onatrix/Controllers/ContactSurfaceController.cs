@@ -15,7 +15,7 @@ namespace Umbraco_Onatrix.Controllers;
 	public class ContactSurfaceController : SurfaceController
 	{
 
-	private readonly ContactService _contactService;
+		private readonly ContactService _contactService;
 		
 		public ContactSurfaceController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, ContactService contactService) : base(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
 		{
@@ -40,14 +40,37 @@ namespace Umbraco_Onatrix.Controllers;
 
 			return CurrentUmbracoPage();
 
+			}
+
+			await _contactService.CreateContactFormEntity(form);
+			TempData["success"] = "form submitted sucessfully.";
+			var emailService = new EmailSenderService();
+			await emailService.SendEmailAsync(form.Email);
+			return RedirectToCurrentUmbracoPage();
+
 		}
 
-		await _contactService.CreateContactFormEntity(form);
+
+	public async Task<IActionResult> HandleHelpSubmit(string email)
+	{
+		if (!ModelState.IsValid)
+		{
+
+			ViewData["email"] = email;
+			ViewData["error_email"] = string.IsNullOrEmpty(email);
+
+			return CurrentUmbracoPage();
+
+		}
+
+		await _contactService.CreateGetHelpEntity(email);
 		TempData["success"] = "form submitted sucessfully.";
+		var emailService = new EmailSenderService();
+		await emailService.SendEmailAsync(email);
 		return RedirectToCurrentUmbracoPage();
 
-		}
 	}
+}
 
 
 
