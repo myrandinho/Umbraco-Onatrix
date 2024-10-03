@@ -43,7 +43,7 @@ namespace Umbraco_Onatrix.Controllers;
 			}
 
 			await _contactService.CreateContactFormEntity(form);
-			TempData["success"] = "form submitted sucessfully.";
+			TempData["success"] = "Thank you for your submission. We will get back to you shortly.";
 			var emailService = new EmailSenderService();
 			await emailService.SendEmailAsync(form.Email);
 			return RedirectToCurrentUmbracoPage();

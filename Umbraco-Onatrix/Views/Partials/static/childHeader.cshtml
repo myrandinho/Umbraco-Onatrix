@@ -13,6 +13,7 @@
     
 
     var backgroundImage1 = aboutcontent?.Value<IPublishedContent>("selectedImage1")?.Url() ?? "test halloj";
+    var backgroundImage2 = aboutcontent?.Value<IPublishedContent>("selectedImage2")?.Url() ?? "test halloj";
         
 
     var selection = Model.Ancestors().ToArray(); 
@@ -42,7 +43,7 @@
         </div>
     </div>
         <img class="bg-image-1" src="@backgroundImage1">
-        <img class="bg-image-2" src="/src/images/bg-globe2.svg">
+        <img class="bg-image-2" src="@backgroundImage2">
 </section>
 
 

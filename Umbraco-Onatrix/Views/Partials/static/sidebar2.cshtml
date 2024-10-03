@@ -37,12 +37,23 @@
                 <h5 class="box-h5">How can we help you?</h5>
                 <p class="box-p">online support 24/7, we are here to help you</p>
                 
-                @using (Html.BeginUmbracoForm("HandleHelpSubmit", "ContactSurface", FormMethod.Post))
-                {
+                @if (TempData["success"] != null) {
+                    @using (Html.BeginUmbracoForm("HandleHelpSubmit", "ContactSurface", FormMethod.Post))
+                    {
 
-                    <input id="email" name="email" type="email" placeholder="E-mail address" value="@ViewData["email"]">
-                    <button type="submit" class="envelope-btn"><i class="fa-regular fa-envelope"></i></button>
-                    
+                        <input disabled id="email" name="email" type="email" placeholder="E-mail address" value="@ViewData["email"]">
+                        <button disabled type="submit" class="envelope-btn-sent"><i class="fa-solid fa-circle-check"></i></button>
+                        
+                    }
+                }
+                else {
+                    @using (Html.BeginUmbracoForm("HandleHelpSubmit", "ContactSurface", FormMethod.Post))
+                    {
+
+                        <input id="email" name="email" type="email" placeholder="E-mail address" value="@ViewData["email"]">
+                        <button type="submit" class="envelope-btn"><i class="fa-regular fa-envelope"></i></button>
+                        
+                    }
                 }
             <img src="/media/sw5hn5hy/Mail.svg">
             </div>

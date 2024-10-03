@@ -36,6 +36,25 @@ body {
   color: #D9C3A9 !important;
 }
 
+.envelope-btn-sent {
+  color: greenyellow;
+  position: absolute;
+  display: inline;
+  right: 10px;
+  top: 13px;
+  border: none;
+  background-color: transparent;
+}
+
+.envelope-btn-sent i {
+  font-size: 20px;
+  color: greenyellow;
+}
+
+.success-message {
+  color: greenyellow;
+}
+
 h1 {
 	font-weight: bold;
 	font-size: 70px;
