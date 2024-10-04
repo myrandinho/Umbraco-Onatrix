@@ -38,5 +38,19 @@ public class ContactService(DataContext context)
 		return entity;
 	}
 
+	public async Task<MessageFormEntity> CreateMessageFormEntity(MessageFormModel model)
+	{
+		var entity = new MessageFormEntity
+		{
+			Name = model.Name,
+			Email = model.Email,
+			Question = model.Question,
+		};
+
+		var result = await context.MessageForms.AddAsync(entity);
+		await context.SaveChangesAsync();
+		return entity;
+	}
+
 
 }

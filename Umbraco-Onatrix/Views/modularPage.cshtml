@@ -17,10 +17,6 @@
 
 @await Html.GetBlockGridHtmlAsync(Model!.Layout)
 @await Html.PartialAsync("partials/static/aboutUs.cshtml")
-@await Html.PartialAsync("partials/static/ourStory.cshtml")
-@await Html.PartialAsync("partials/static/successStory.cshtml")
-
-
 
 <section class="our-services">
 	<div class="container">
@@ -32,6 +28,14 @@
 
 	</div>
 </section>
+
+
+@await Html.PartialAsync("partials/static/ourStory.cshtml")
+@await Html.PartialAsync("partials/static/successStory.cshtml")
+
+
+@await Html.PartialAsync("partials/static/recentProjects.cshtml")
+
 
 @await Html.PartialAsync("partials/static/partnersSection.cshtml")
 

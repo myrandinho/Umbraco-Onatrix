@@ -1,0 +1,64 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels; 
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    bool.TryParse(ViewData["error_name"]?.ToString(), out bool error_name);
+	bool.TryParse(ViewData["error_email"]?.ToString(), out bool error_email);
+	bool.TryParse(ViewData["error_question"]?.ToString(), out bool error_question);
+}
+
+<section class="question-section">
+    <div class="container">
+        <div class="content">
+            <h5>Have a question?</h5>
+            @if (TempData["success"] != null)
+            {
+                @using (Html.BeginUmbracoForm("HandleMessageSubmit", "ContactSurface", FormMethod.Post))
+                {
+                <div id="fig-name" class="form-input-group">
+                    <input disabled id="name" name="name" type="text" placeholder="Name" class="form-input" value="@ViewData["name"]">
+                    <span class="form-input-error @((error_name) ? "form-invalid-input" : null )">You must enter your name</span>
+                </div>
+                <div id="fig-email" class="form-input-group">
+                    <input disabled id="email" name="email" type="email" placeholder="Email" class="form-input" value="@ViewData["email"]">
+                    <span class="form-input-error @((error_email) ? "form-invalid-input" : null )">You must enter a valid e-mail address</span>
+                </div>
+                <div id="fig-question" class="form-input-group">
+                    <textarea disabled itemid="question" name="question" type="textarea" placeholder="Question" class="form-input" value="@ViewData["question"]"></textarea>
+                    <span class="form-input-error @((error_question) ? "form-invalid-input" : null )">You must enter a question here</span>
+                </div>
+
+                <button disabled id="btnbtn" type="submit" class="form-button btn-submit">Submit</button>
+                <div class="success-message">@TempData["success"] <i class="fa-solid fa-circle-check"></i></div>
+
+                }
+
+            }
+            else 
+            {
+                @using (Html.BeginUmbracoForm("HandleMessageSubmit", "ContactSurface", FormMethod.Post))
+                {
+                <div id="fig-name" class="form-input-group">
+                    <input id="name" name="name" type="text" placeholder="Name" class="form-input" value="@ViewData["name"]">
+                    <span class="form-input-error @((error_name) ? "form-invalid-input" : null )">You must enter your name</span>
+                </div>
+                <div id="fig-email" class="form-input-group">
+                    <input id="email" name="email" type="email" placeholder="Email" class="form-input" value="@ViewData["email"]">
+                    <span class="form-input-error @((error_email) ? "form-invalid-input" : null )">You must enter a valid e-mail address</span>
+                </div>
+                <div id="fig-question" class="form-input-group">
+                    <textarea itemid="question" name="question" type="textarea" placeholder="Question" class="form-input" value="@ViewData["question"]"></textarea>
+                    <span class="form-input-error @((error_question) ? "form-invalid-input" : null )">You must enter a question here</span>
+                </div>
+
+                <button id="btnbtn" type="submit" class="form-button btn-submit">Submit</button>
+
+                }
+
+            }
+            
+        </div>
+    </div>
+</section>

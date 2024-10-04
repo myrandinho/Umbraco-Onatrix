@@ -11,6 +11,7 @@ public class DataContext : DbContext
 
 	public required DbSet<ContactFormEntity> ContactForms { get; set; }
 	public required DbSet<GetHelpEntity> HelpForm { get; set; }
+	public required DbSet<MessageFormEntity> MessageForms { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

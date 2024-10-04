@@ -12,8 +12,8 @@ using Umbraco_Onatrix.Contexts;
 namespace Umbraco_Onatrix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241002193316_adding datetime hopefully")]
-    partial class addingdatetimehopefully
+    [Migration("20241004102818_adding MessageForm entity")]
+    partial class addingMessageFormentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,31 @@ namespace Umbraco_Onatrix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HelpForm");
+                });
+
+            modelBuilder.Entity("Umbraco_Onatrix.Entities.MessageFormEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MessageForms");
                 });
 #pragma warning restore 612, 618
         }

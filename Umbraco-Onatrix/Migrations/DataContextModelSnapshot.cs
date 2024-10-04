@@ -69,6 +69,31 @@ namespace Umbraco_Onatrix.Migrations
 
                     b.ToTable("HelpForm");
                 });
+
+            modelBuilder.Entity("Umbraco_Onatrix.Entities.MessageFormEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MessageForms");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -638,6 +638,7 @@ body {
   display: grid;
   gap: 2rem;
   grid-template-columns: auto;
+  
 }
 @media (min-width: 768px) {
   .our-services .container .service-content {
@@ -651,6 +652,7 @@ body {
 }
 .our-services .container .service-content .service {
   display: inline-block;
+  border: 1px solid #EAEAEA;
 }
 .our-services .container .service-content .service .service-title {
   height: 85px;
@@ -766,10 +768,12 @@ body {
 .success-story {
   background-color: #4F5955;
   padding-bottom: 100px;
+  margin-bottom: 80px;
 }
 @media (min-width: 768px) {
   .success-story {
     padding-bottom: 200px;
+    margin-bottom: 150px;
   }
 }
 @media (min-width: 1200px) {
@@ -856,7 +860,9 @@ body {
 }
 
 .recent-projects {
-  padding-top: 230px;
+  padding-top: 0px !important;
+  
+  
 }
 .recent-projects .container h6 {
   font-style: normal;
@@ -1712,7 +1718,7 @@ footer .container p span {
 }
 
 .callback {
-  background-image: url(https://localhost:44348/media/knucn11e/map1.svg);
+  
   height: 700px;
   padding: 250px;
   margin-bottom: 350px;
@@ -1953,4 +1959,221 @@ footer .container p span {
   font-size: 13px;
   margin: 0;
   padding: 0;
+}
+
+.recent-projects {
+  padding-top: 230px;
+}
+.recent-projects .container h6 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #D9C3A9;
+  padding-top: 80px;
+}
+.recent-projects .container h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  color: #4F5955;
+  margin-bottom: 2rem;
+}
+.recent-projects .projects {
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .recent-projects .projects {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1400px) {
+  .recent-projects .projects {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+.recent-projects .projects .project {
+  position: relative;
+  display: inline-block;
+  height: auto;
+}
+.recent-projects .projects .project img {
+  height: auto;
+  width: 100%;
+  display: block;
+}
+.recent-projects .projects .project .project-information {
+  padding: 5% 0 5% 5%;
+  background-color: #4F5955;
+  opacity: 0.8;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  text-decoration: none;
+}
+.recent-projects .projects .project .project-information:hover {
+  cursor: pointer;
+  padding: 8% 0 8% 5%;
+  opacity: 1;
+}
+.recent-projects .projects .project .project-information:hover .project-information-content .text-box .topic-text {
+  color: #D9C3A9;
+  font-weight: 600;
+}
+.recent-projects .projects .project .project-information:hover .project-information-content .icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recent-projects .projects .project .project-information:hover .project-information-content .icon-box i {
+  color: #ffffff;
+  font-size: 20px;
+}
+@media (min-width: 1400px) {
+  .recent-projects .projects .project .project-information:hover .project-information-content .icon-box i {
+    font-size: 40px;
+  }
+}
+.recent-projects .projects .project .project-information .project-information-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.recent-projects .projects .project .project-information .project-information-content .text-box .topic-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  font-size: 18px;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+.recent-projects .projects .project .project-information .project-information-content .text-box .project-category {
+  color: #ffffff;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+.recent-projects .projects .project .project-information .project-information-content .icon-box {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-section {
+  padding: 50px 0;
+}
+.question-section .container .content h5 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  color: #4F5955;
+  padding: 70px 0 16px 0;
+}
+.question-section .container .content form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  grid-template-areas: "name email" "quest quest" "btn btn";
+}
+.question-section .container .content form #fig-name {
+  grid-area: name;
+}
+.question-section .container .content form #fig-email {
+  grid-area: email;
+}
+.question-section .container .content form #fig-question {
+  grid-area: quest;
+}
+.question-section .container .content form #btnbtn {
+  grid-area: btn;
+}
+.question-section .container .content form .form-input-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+  
+}
+.question-section .container .content form .form-input-group .form-input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #EBEBEB;
+  color: #797474;
+  padding-left: 6px;
+  text-indent: 12px;
+}
+.question-section .container .content form .form-input-group textarea {
+  height: 175px !important;
+  width: 100%;
+  border: 1px solid #EBEBEB;
+  color: #797474;
+  padding-left: 6px;
+  text-indent: 12px;
+}
+.question-section .container .content form .form-input-group .form-input-error {
+  display: none;
+  position: absolute;
+  bottom: -16px;
+  left: 18px;
+  color: red;
+  font-size: 10px;
+}
+.question-section .container .content form .form-input-group .form-invalid-input {
+  display: block;
+}
+.question-section .container .content form .form-button {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid;
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.25s;
+  text-decoration: none !important;
+  background-color: #4F5955;
+  color: #F2EDDC;
+  width: 140px;
+  grid-area: btn;
+  font-weight: 500;
+}
+.question-section .container .content form .form-button:hover {
+  transition: 0.25s;
+  text-decoration: none;
+}
+
+.tags-section .container .content {
+  margin-top: -100px;
+  display: flex;
+  align-items: end;
+  gap: 9px;
+  padding: 0 0 0 0;
+}
+.tags-section .container .content h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  font-size: 14px;
+  font-weight: 600;
+}
+.tags-section .container .content .tag-item {
+  display: flex;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #F2EDDC;
+}
+.tags-section .container .content .tag-item p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #4F5955;
+  font-size: 14px;
+  margin: 0;
 }

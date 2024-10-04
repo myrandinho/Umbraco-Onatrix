@@ -10,12 +10,12 @@
 	bool.TryParse(ViewData["error_email"]?.ToString(), out bool error_email);
 	bool.TryParse(ViewData["error_phone"]?.ToString(), out bool error_phone);
 
-
+	var imageUrl = Umbraco.Media(Guid.Parse("0d84d5a1-287f-435e-8178-c15a034a3d15")).Url();
 }
 
 @await Html.PartialAsync("partials/static/contactSection1.cshtml")
 
-<section class="callback">
+<section class="callback" style="background-image: url('@imageUrl');">
 	<div class="container shadow p-3 mb-5 bg-white rounded">
 		<div class="content">
 			<div class="text-content">

@@ -17,10 +17,12 @@
 
 	var totalItems = selection?.Count() ?? 0;
 	var pagedItems = selection?.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage);
+
+	var hasPageTitle = !string.IsNullOrEmpty(Model?.Value("pageTitle")?.ToString());
 }
 
 
-<section class="our-services">
+<section class="our-services" style="background-color:@(hasPageTitle ? "white" : "transparent")">
 	<div class="container">
 		@if (!string.IsNullOrEmpty(Model.Value("customHeadline").ToString())) {
 		<div class="titles">

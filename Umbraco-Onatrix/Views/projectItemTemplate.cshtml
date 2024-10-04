@@ -13,8 +13,11 @@
 			<p class="date" >@Model.Value("publishDate")</p>
 		</div>
 		@Model.Value("pageContent")
+		@await Html.PartialAsync("partials/static/tagSection.cshtml")
 	</div>
     </section>
     @await Html.PartialAsync("partials/static/sidebar2.cshtml")
 </div>
+
+@await Html.PartialAsync("partials/static/contactSection1.cshtml")
 
